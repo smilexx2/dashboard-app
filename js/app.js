@@ -1,6 +1,8 @@
 const avatarImg = document.querySelector('header .avatar');
 const nameLink = document.querySelector('header .name');
 
+let $window = $(window);
+
 $.ajax({
     url: 'https://randomuser.me/api/',
     dataType: 'json',
@@ -19,12 +21,21 @@ $('.hamburger-icon').click(function() {
     $('aside').toggleClass('open');
 });
 
-function openNav() {
-    document.querySelector('aside').style.width = "70px";
-    document.querySelector('.main-content').style.marginLeft = "70px";
-}
 
-function closeNav() {
-    document.querySelector('aside').style.width = "0";
-    document.querySelector('.main-content').style.marginLeft = "0";
-}
+$('.search input').focus(function() {
+    if ($window.width() < 1024) {
+        $('.search').addClass('open');
+        $('.tab').addClass('close');
+    }
+});
+
+$('.search input').focusout(function() {
+    if ($window.width() < 1024) {
+        $('.search').removeClass('open');
+        $('.tab').removeClass('close');
+    }
+});
+
+$('.close-button').click(function() {
+    $('.main-content .container .wrapper').addClass('close');
+});

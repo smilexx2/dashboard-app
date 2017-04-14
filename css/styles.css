@@ -7,14 +7,14 @@
 }
 
 body {
-    font-family: 'Merriweather', serif;
+    font-family: 'Roboto', sans-serif;
     text-align: center;
 }
 
 header {
     background: #7479bd;
     width: 100%;
-    min-height: 50px;
+    min-height: 70px;
     display: flex;
     justify-content: space-between;
     padding: 0 1em;
@@ -27,6 +27,18 @@ header .hamburger-icon {
 
 header .logo {
     color: #fff;
+    font-weight: 100;
+    position: relative;
+    font-size: 1.4em;
+}
+
+header .logo::after {
+    content: "\2122";
+    color: #fff;
+    font-weight: 100;
+    font-size: 8px;
+    top: 3px;
+    position: absolute;
 }
 
 header .left {
@@ -55,17 +67,16 @@ header .right {
 }
 
 header .notification-icon {
-    width: 32px;
     height: 2.4em;
     position: relative;
     border-right: 1px solid #6369bc;
-    padding-right: 0.8em;
+    padding-right: 1.2em;
     margin-right: 0.8em;
     display: flex;
 }
 
 header .notification-icon svg {
-    width: 100%;
+    width: 24px;
 }
 
 header .notification-icon::after {
@@ -76,7 +87,7 @@ header .notification-icon::after {
     width: 0.4em;
     height: 0.4em;
     top: 0.4em;
-    right: 0.7em;
+    right: 1em;
 }
 
 header .name {
@@ -85,12 +96,137 @@ header .name {
     text-transform: capitalize;
     margin-left: 1em;
     color: #fff;
-    font-weight: 300;
+    font-weight: 100;
+}
+
+.container {
+    width: 100%;
+    position: relative;
+}
+
+aside {
+    background: #4e4d71;
+    width: 0;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+}
+
+aside.open {
+    width: 12em;
+}
+
+aside.open nav {
+    opacity: 1;
+}
+
+nav {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav .wrapper {
+    margin-left: 20%;
+    display: flex;
+    align-items: center;
+}
+
+nav .wrapper span {
+    margin-left: 10px;
+    color: #fff;
+    font-weight: 100;
+}
+
+aside.open .wrapper span {
+    opacity: 1;
+}
+
+aside .wrapper span {
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+nav li {
+    margin: 10px 0;
+}
+
+nav li.visits svg {
+    margin-left: 4px;
+}
+
+nav li.visits span {
+    margin-left: 8px;
+}
+
+nav a {
+    display: block;
+    position: relative;
+}
+
+nav a::before {
+    position: absolute;
+    background: #88d985;
+    content: "";
+    width: 0.2em;
+    height: 100%;
+    left: 0;
+    border-bottom-right-radius: 1em;
+    border-top-right-radius: 1em;
+    display: none;
+}
+
+nav svg {
+    width: 25px;
+    margin: 10px 0;
+}
+
+nav svg .st0 {
+    fill: #a1a1b4;
+}
+
+.main-content {
+    flex-grow: 1;
+    min-height: 1200px;
+}
+
+body.dashboard li.dashboard a::before {
+    display: block;
+}
+
+body.dashboard li.dashboard svg .st0 {
+    fill: #FFFFFF;
 }
 
 @media screen and (min-width: 768px) {
     header .name {
         display: flex;
+    }
+    .hamburger-icon {
+        display: none;
+    }
+    aside,
+    aside.open {
+        width: 70px;
+    }
+    nav {
+        opacity: 1;
+    }
+    nav .wrapper {
+        margin-left: 0;
+        justify-content: center;
+    }
+    nav span {
+        display: none;
+    }
+    .main-content {
+        margin-left: 70px;
     }
 }
 

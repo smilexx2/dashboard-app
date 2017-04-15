@@ -1,7 +1,7 @@
 const avatarImg = document.querySelector('header .avatar');
 const nameLink = document.querySelector('header .name');
 
-let $window = $(window);
+const $window = $(window);
 
 $.ajax({
     url: 'https://randomuser.me/api/',
@@ -13,9 +13,9 @@ $.ajax({
     }
 });
 
-var getAvatarImageUrl = (user) => user.picture.thumbnail;
+let getAvatarImageUrl = (user) => user.picture.thumbnail;
 
-var getName = (user) => user.name.first + ' ' + user.name.last;
+let getName = (user) => user.name.first + ' ' + user.name.last;
 
 $('.hamburger-icon').click(function() {
     $('aside').toggleClass('open');
@@ -37,5 +37,5 @@ $('.search input').focusout(function() {
 });
 
 $('.close-button').click(function() {
-    $('.main-content .container .wrapper').addClass('close');
+    $('.main-content .container .alert-box').slideUp();
 });

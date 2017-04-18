@@ -12,6 +12,13 @@ body {
     background: #fbfbfb;
 }
 
+h3 {
+    color: #797979;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: smaller;
+}
+
 header {
     background: #7479bd;
     width: 100%;
@@ -232,7 +239,7 @@ body.dashboard li.dashboard svg .st0 {
     display: flex;
     align-items: center;
     padding-right: 20px;
-    width: 36%;
+    width: 39%;
     transition: 0.5s;
     position: absolute;
     right: 0;
@@ -308,8 +315,14 @@ body.dashboard li.dashboard svg .st0 {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 0 0 28px;
+    flex: 0 0 38px;
     color: #fff;
+    background-color: transparent;
+    border: none;
+}
+
+.close-button .fa-times {
+    font-size: 16px;
 }
 
 .main-content .alert-box strong {
@@ -319,6 +332,38 @@ body.dashboard li.dashboard svg .st0 {
 
 .main-content .traffic {
     margin-top: 20px;
+    padding: 0 20px;
+}
+
+.traffic .heading {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.traffic .scales {
+    display: flex;
+    list-style: none;
+    color: #797979;
+    padding: 0;
+    flex-grow: 1;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.scales li {
+    font-size: small;
+    font-weight: 500;
+    margin: 0 13px;
+    padding: 5px 0;
+}
+
+@media screen and (min-width: 375px) {
+    .traffic .scales {
+        justify-content: flex-end;
+        margin-right: -10px;
+    }
 }
 
 @media screen and (min-width: 768px) {

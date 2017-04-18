@@ -151,7 +151,20 @@
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="traffic">Traffic Area</div>
+                <div class="traffic">
+                    <div class="heading">
+                        <h3>Traffic</h3>
+                        <ul class="scales">
+                            <li>Hourly</li>
+                            <li>Daily</li>
+                            <li style="background: #83c891; color: #fff; border-radius: 15px; padding: 5px 10px;">Weekly</li>
+                            <li>Monthly</li>
+                        </ul>
+                    </div>
+                    <div class="chart-containter">
+                        <canvas id="trafficChart"></canvas>
+                    </div>
+                </div>
                 <div class="daily-traffic">Daily traffic Area</div>
                 <div class="mobile-users">Mobile Users Area</div>
                 <div class="social-stats">Social Stats Area</div>
@@ -163,7 +176,9 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="js/app.js" type="text/javascript" charset="utf-8 "></script>
 </body>
 
 </html>

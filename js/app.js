@@ -40,19 +40,8 @@ $('.close-button').click(function() {
     $('.main-content .container .alert-box').slideUp();
 });
 
-const currentDate = moment().year(2017).month(7).date(1);
-const firstDate = currentDate.subtract(11, 'weeks');
-
-let addDates = () => {
-    let dateArray = [];
-    let date = firstDate;
-    for (let i = 0; i < 11; i++) {
-        dateArray[i] = date.format('D') + ' - ' + date.add(6, 'd').format('D');
-        date = date.add(1, 'd');
-    }
-
-    return dateArray;
-}
+const endDate = moment().year(2017).month(6).date(31);
+const startDate = moment().year(2017).month(6).date(31).subtract(11, 'weeks').add(1, 'd');
 
 let ctx = document.getElementById("trafficChart");
 let trafficChart = Chart.Scatter(ctx, {
@@ -154,8 +143,8 @@ let trafficChart = Chart.Scatter(ctx, {
                 type: 'time',
                 unit: 'week',
                 time: {
-                    min: moment().year(2017).month(4).date(16),
-                    max: moment().year(2017).month(6).date(31),
+                    min: startDate,
+                    max: endDate,
                     unitStepSize: 7,
                     displayFormats: {
                         'millisecond': 'DD',

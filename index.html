@@ -151,7 +151,7 @@
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </button>
                 </div>
-                <div class="traffic">
+                <div class="traffic row">
                     <div class="heading">
                         <h3>Traffic</h3>
                         <ul class="scales">
@@ -162,11 +162,22 @@
                         </ul>
                     </div>
                     <div class="chart-containter">
-                        <canvas id="trafficChart"></canvas>
+                        <canvas id="scatterChartWeekly"></canvas>
                     </div>
                 </div>
-                <div class="daily-traffic">Daily traffic Area</div>
-                <div class="mobile-users">Mobile Users Area</div>
+                <div class="row">
+                    <div class="column">
+                        <h3>Daily Traffic</h3>
+                        <div class="daily-traffic">
+                            <canvas id="barChartDaily"></canvas>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="mobile-users">
+                            <canvas id="pieChartMobileUser"></canvas>
+                        </div>
+                    </div>
+                </div>
                 <div class="social-stats">Social Stats Area</div>
                 <div class="new-memebers">New Members Area</div>
                 <div class="recent-activities">Recent Activities Area</div>

@@ -43,8 +43,7 @@ $('.close-button').click(function() {
 const endDate = moment().year(2017).month(6).date(31);
 const startDate = moment().year(2017).month(6).date(31).subtract(11, 'weeks').add(1, 'd');
 
-let ctx = document.getElementById("trafficChart");
-let trafficChart = Chart.Scatter(ctx, {
+let scatterChartWeekly = Chart.Scatter("scatterChartWeekly", {
     data: {
         datasets: [{
             pointBackgroundColor: 'rgba(255, 255, 255, 1)',
@@ -134,8 +133,7 @@ let trafficChart = Chart.Scatter(ctx, {
                 ticks: {
                     fontFamily: "'Roboto', sans-serif",
                     fontSize: 10,
-                    fontColor: "#cacaca",
-                    padding: 20
+                    fontColor: "#cacaca"
                 },
                 gridLines: {
                     zeroLineColor: "rgba(0, 0, 0, 0.1)"
@@ -164,4 +162,77 @@ let trafficChart = Chart.Scatter(ctx, {
         responsive: true,
         maintainAspectRatio: false
     }
+});
+
+let barChartDaily = new Chart("barChartDaily", {
+    type: 'bar',
+    data: {
+        labels: ["S", "M", "T", "W", "T", "F", "S"],
+        datasets: [{
+            data: [50, 75, 150, 100, 200, 175, 75],
+            backgroundColor: 'rgba(115, 121, 189, 1)'
+        }],
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true,
+                    max: 250,
+                    fixedStepSize: 50,
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 10,
+                    fontColor: "#cacaca",
+                    padding: 10
+                },
+                gridLines: {
+                    drawTicks: false,
+                    zeroLineColor: "rgba(0, 0, 0, 0.1)",
+                    drawBorder: false
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontFamily: "'Roboto', sans-serif",
+                    fontSize: 10,
+                    fontColor: "#cacaca"
+                },
+                gridLines: {
+                    drawBorder: false,
+                    zeroLineColor: "rgba(0, 0, 0, 0.1)"
+                }
+            }]
+        },
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+var data = {
+    labels: [
+        "Red",
+        "Blue",
+        "Yellow"
+    ],
+    datasets: [{
+        data: [300, 50, 100],
+        backgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+        ],
+        hoverBackgroundColor: [
+            "#FF6384",
+            "#36A2EB",
+            "#FFCE56"
+        ]
+    }]
+};
+
+var pieChartMobileUser = new Chart("pieChartMobileUser", {
+    type: 'pie',
+    data: data
 });

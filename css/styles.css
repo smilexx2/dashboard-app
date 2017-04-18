@@ -17,6 +17,8 @@ h3 {
     font-weight: 400;
     text-transform: uppercase;
     font-size: smaller;
+    text-align: left;
+    margin: 16px 0;
 }
 
 header {
@@ -330,9 +332,10 @@ body.dashboard li.dashboard svg .st0 {
     color: #fff;
 }
 
-.main-content .traffic {
+.main-content .row.traffic {
     margin-top: 20px;
-    padding: 0 20px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .traffic .heading {
@@ -357,6 +360,12 @@ body.dashboard li.dashboard svg .st0 {
     font-weight: 500;
     margin: 0 13px;
     padding: 5px 0;
+}
+
+.column {
+    margin-top: 20px;
+    padding: 0 20px 20px;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 @media screen and (min-width: 375px) {

@@ -195,6 +195,7 @@ let barChartDaily = new Chart("barChartDaily", {
                 }
             }],
             xAxes: [{
+                barPercentage: 0.6,
                 ticks: {
                     fontFamily: "'Roboto', sans-serif",
                     fontSize: 10,

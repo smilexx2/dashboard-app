@@ -110,7 +110,7 @@ header .name {
     text-decoration: none;
 }
 
-.container {
+body>.container {
     width: 100%;
     position: relative;
 }
@@ -293,7 +293,7 @@ body.dashboard li.dashboard svg .st0 {
     color: #c7c7c7;
 }
 
-.main-content .container {
+.main-content>.container {
     background: #fff;
     overflow: auto;
 }
@@ -332,9 +332,11 @@ body.dashboard li.dashboard svg .st0 {
     color: #fff;
 }
 
-.main-content .row.traffic {
+.main-content .row {
     padding: 0 20px 20px;
     border-bottom: 1px solid #e5e5e5;
+    float: left;
+    width: 100%;
 }
 
 .traffic .heading {
@@ -362,9 +364,78 @@ body.dashboard li.dashboard svg .st0 {
     padding: 5px 0;
 }
 
+.main-content .row.chart-2 {
+    padding: 0;
+    border-bottom: none;
+}
+
 .column {
     padding: 0 20px 20px;
     border-bottom: 1px solid #e5e5e5;
+}
+
+.social-stats .container {
+    margin: 0 -20px;
+}
+
+.social-box {
+    display: flex;
+    padding: 20px;
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    margin: 0 20px 20px;
+    justify-content: flex-start;
+    background: #fbfbfb;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-box .icon {
+    width: 64px;
+    height: 64px;
+    background: #7379bd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.icon svg {
+    fill: #fff;
+}
+
+.icon.twitter svg {
+    width: 32px;
+    height: 32px;
+}
+
+.icon.facebook svg {
+    width: 40px;
+    height: 40px;
+}
+
+.icon.google svg {
+    width: 30px;
+    height: 30px;
+}
+
+.social-box .text {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.text .social-title {
+    color: #777cbe;
+    font-weight: 500;
+}
+
+.text .stats {
+    color: #717171;
+    font-size: 36px;
+    font-weight: 300;
 }
 
 @media screen and (min-width: 375px) {
@@ -409,6 +480,22 @@ body.dashboard li.dashboard svg .st0 {
     }
     .column.border-right {
         border-right: 1px solid #e5e5e5;
+    }
+    .social-box {
+        width: calc(33.33% - 40px);
+        float: left;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .social-box {
+        flex-direction: row;
+        justify-content: flex-start;
+    }
+    .social-box .text {
+        margin-left: 20px;
+        margin-top: 0;
+        align-items: flex-start;
     }
 }
 

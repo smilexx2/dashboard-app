@@ -211,28 +211,48 @@ let barChartDaily = new Chart("barChartDaily", {
     }
 });
 
-var data = {
-    labels: [
-        "Red",
-        "Blue",
-        "Yellow"
-    ],
-    datasets: [{
-        data: [300, 50, 100],
-        backgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-        ],
-        hoverBackgroundColor: [
-            "#FF6384",
-            "#36A2EB",
-            "#FFCE56"
-        ]
-    }]
-};
-
 var pieChartMobileUser = new Chart("pieChartMobileUser", {
-    type: 'pie',
-    data: data
+    type: 'doughnut',
+    data: {
+        labels: [
+            "Desktop",
+            "Tablets",
+            "Phones"
+        ],
+        datasets: [{
+            data: [67, 18, 15],
+            backgroundColor: [
+                "#7379bd",
+                "#83c891",
+                "#76b1be"
+            ],
+            hoverBackgroundColor: [
+                "#7379bd",
+                "#83c891",
+                "#76b1be"
+            ]
+        }]
+    },
+    options: {
+        rotation: 0 * Math.PI,
+        legend: {
+            position: 'right',
+            labels: {
+                fontFamily: "'Roboto', sans-serif",
+                fontSize: 10,
+                fontColor: "#7e7e7e",
+                boxWidth: 10
+            },
+            reverse: true
+        },
+        responsive: true,
+        maintainAspectRatio: false,
+        elements: {
+            arc: {
+                borderWidth: 0
+            }
+
+        }
+    }
+
 });

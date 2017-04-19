@@ -18,7 +18,7 @@ h3 {
     text-transform: uppercase;
     font-size: smaller;
     text-align: left;
-    margin: 16px 0;
+    margin: 20px 0 16px;
 }
 
 header {
@@ -333,7 +333,6 @@ body.dashboard li.dashboard svg .st0 {
 }
 
 .main-content .row.traffic {
-    margin-top: 20px;
     padding: 0 20px 20px;
     border-bottom: 1px solid #e5e5e5;
 }
@@ -353,6 +352,7 @@ body.dashboard li.dashboard svg .st0 {
     flex-grow: 1;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 0;
 }
 
 .scales li {
@@ -363,7 +363,6 @@ body.dashboard li.dashboard svg .st0 {
 }
 
 .column {
-    margin-top: 20px;
     padding: 0 20px 20px;
     border-bottom: 1px solid #e5e5e5;
 }
@@ -372,6 +371,7 @@ body.dashboard li.dashboard svg .st0 {
     .traffic .scales {
         justify-content: flex-end;
         margin-right: -10px;
+        margin-top: 16px;
     }
 }
 
@@ -398,6 +398,17 @@ body.dashboard li.dashboard svg .st0 {
     }
     .main-content {
         margin-left: 70px;
+    }
+    .row.chart-2 {
+        float: left;
+        width: 100%;
+    }
+    .column {
+        width: 50%;
+        float: left;
+    }
+    .column.border-right {
+        border-right: 1px solid #e5e5e5;
     }
 }
 

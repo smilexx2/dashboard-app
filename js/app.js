@@ -1,21 +1,108 @@
 const avatarImg = document.querySelector('header .avatar');
 const nameLink = document.querySelector('header .name');
+const membersList = document.querySelector('.new-members .list');
+const recentActivitiesList = document.querySelector('.recent-activities .list');
+
+const chevronIcon = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" width="16"><g><g><polygon points="17.4,63.5 14.6,60.5 45.1,32 14.6,3.5 17.4,0.5 50.9,32"/></g></g></svg>';
 
 const $window = $(window);
 
 $.ajax({
-    url: 'https://randomuser.me/api/',
+    url: 'https://randomuser.me/api/?results=5',
     dataType: 'json',
     success: function(data) {
-        user = data.results[0];
-        avatarImg.src = getAvatarImageUrl(user)
-        nameLink.innerHTML = getName(user);
+        const loginUser = data.results[0];
+        const newMembers = data.results.slice(1, data.results.length);
+
+        avatarImg.src = getAvatarImageUrl(loginUser)
+        nameLink.innerHTML = getName(loginUser);
+        createMockActivityData(newMembers);
+        console.log(newMembers);
+        createLists(newMembers);
     }
 });
 
-let getAvatarImageUrl = (user) => user.picture.thumbnail;
+let createMockActivityData = function(members) {
+    members[0].activity = {
+        message: getName(members[0]) + " commented on YourApp's SEO Tip",
+        time: '4 hours ago'
+    };
+    members[1].activity = {
+        message: getName(members[1]) + " liked the post Facebook's Change for 2016",
+        time: '5 hours ago'
+    };
+    members[2].activity = {
+        message: getName(members[2]) + " commented on Facebook's Change for 2016",
+        time: '5 hours ago'
+    };
+    members[3].activity = {
+        message: getName(members[3]) + " posted YourApp's SEO Tip",
+        time: '1 day ago'
+    };
 
+
+}
+
+let getAvatarImageUrl = (user) => user.picture.thumbnail;
 let getName = (user) => user.name.first + ' ' + user.name.last;
+let getEmail = (user) => user.email;
+let getRegisterdDate = (user) => moment(user.registered, 'YYYY-MM-DD HH:mm:ss').format('MM/DD/YY');
+
+let createLists = function(members) {
+    for (let i = 0; i < members.length; i++) {
+        membersList.appendChild(createListItem(members[i], {
+            mainText: getName(members[i]),
+            subText: getEmail(members[i]),
+            sideText: getRegisterdDate(members[i])
+        }));
+
+        recentActivitiesList.appendChild(createListItem(members[i], {
+            mainText: members[i].activity.message,
+            subText: members[i].activity.time,
+            sideText: chevronIcon
+        }));
+    }
+}
+
+let createAvatar = function(member) {
+    let avatar = document.createElement('img');
+    avatar.src = getAvatarImageUrl(member);
+    avatar.className = 'avatar';
+
+    return avatar;
+}
+
+let createListItem = function(member, texts) {
+    let mainSpan = document.createElement('span');
+    let subSpan = document.createElement('span');
+    let sideSpan = document.createElement('span');
+    let listItem = document.createElement("li");
+    let anchor = document.createElement("a");
+    let textDiv = document.createElement('div');
+    let avatar = createAvatar(member);
+
+    anchor.href = '#';
+    textDiv.className = 'text';
+
+    mainSpan.className = 'mainText';
+    subSpan.className = 'subText';
+    sideSpan.className = 'sideText';
+
+    mainSpan.textContent = texts.mainText;
+    subSpan.textContent = texts.subText;
+    sideSpan.innerHTML = texts.sideText;
+
+    textDiv.appendChild(mainSpan);
+    textDiv.appendChild(subSpan);
+
+    anchor.appendChild(avatar);
+    anchor.appendChild(textDiv);
+    anchor.appendChild(sideSpan);
+    listItem.appendChild(anchor);
+    return listItem;
+}
+
+
 
 $('.hamburger-icon').click(function() {
     $('aside').toggleClass('open');

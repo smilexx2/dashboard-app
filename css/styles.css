@@ -258,17 +258,28 @@ body.dashboard li.dashboard svg .st0 {
     opacity: 0;
 }
 
-.search input {
-    height: 60%;
-    border: 1px solid #e5e5e5;
+input,
+textarea {
+    border: 1px solid #dadada;
     border-radius: 5px;
     width: 100%;
     padding: 0 10px;
 }
 
-.search input:focus {
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
     outline: none !important;
     border: 1px solid #9397d1;
+}
+
+.search input {
+    height: 60%;
 }
 
 .search .fa-search {
@@ -278,20 +289,32 @@ body.dashboard li.dashboard svg .st0 {
     font-size: 18px;
 }
 
-.search input::-moz-placeholder {
-    color: #c7c7c7;
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+    color: #b2b2b2;
+    font-size: 13px;
+    font-weight: 300;
 }
 
-.search input::-webkit-input-placeholder {
-    color: #c7c7c7;
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #b2b2b2;
+    font-size: 13px;
+    font-weight: 300;
 }
 
-.search input:-ms-input-placeholder {
-    color: #c7c7c7;
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+    color: #b2b2b2;
+    font-size: 13px;
+    font-weight: 300;
 }
 
-.search input:-moz-placeholder {
-    color: #c7c7c7;
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: #b2b2b2;
+    font-size: 13px;
+    font-weight: 300;
 }
 
 .main-content>.container {
@@ -335,7 +358,6 @@ body.dashboard li.dashboard svg .st0 {
 
 .main-content .row {
     padding: 0 20px 20px;
-    border-bottom: 1px solid #e5e5e5;
     float: left;
     width: 100%;
 }
@@ -371,6 +393,12 @@ body.dashboard li.dashboard svg .st0 {
 
 .column {
     padding: 0 20px 20px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.social-stats,
+.traffic {
+    border-bottom: 1px solid #e5e5e5;
 }
 
 .social-stats .container {
@@ -495,6 +523,104 @@ body.dashboard li.dashboard svg .st0 {
     fill: #8d91c8;
 }
 
+.message-box input,
+.message-box textarea {
+    padding: 10px 20px;
+    background: #fbfbfb;
+    margin-bottom: 15px;
+    vertical-align: top;
+}
+
+button {
+    width: 100%;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 14px;
+    border: 1px solid transparent;
+}
+
+button.blue {
+    background: #7379bd;
+}
+
+label.switch-light.switch-ios {
+    display: flex;
+    align-items: center;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+}
+
+label.switch-light.switch-ios strong {
+    width: 40%;
+    text-align: left;
+    font-size: 13px;
+    color: #797979;
+    min-width: 160px;
+    margin: 8px 0;
+}
+
+label.switch-light.switch-ios>span {
+    width: 20%;
+    min-width: 75px;
+}
+
+.switch-ios.switch-light input:checked~span {
+    border-color: #7379bd;
+    box-shadow: inset 0 0 0 30px #7379bd;
+}
+
+.switch-ios.switch-light input:checked~span a {
+    border-color: #7379bd;
+}
+
+.switch-ios.switch-light>span span {
+    line-height: 2em;
+}
+
+svg.rotate {
+    transform: rotate(90deg);
+}
+
+select {
+    border: 1px solid #dadada;
+    border-radius: 5px;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #fbfbfb;
+    margin-bottom: 15px;
+    color: #b2b2b2;
+    font-size: 13px;
+    font-weight: 300;
+    -webkit-appearance: initial
+}
+
+.button-group {
+    display: flex;
+}
+
+button.left {
+    margin-right: 10px;
+}
+
+button.right {
+    margin-left: 10px;
+}
+
+.select-wrapper {
+    position: relative;
+}
+
+.select-wrapper svg {
+    position: absolute;
+    right: 15px;
+    height: 37px;
+    line-height: 37px;
+    transform: rotate(89deg);
+    pointer-events: none;
+}
+
 @media screen and (min-width: 375px) {
     .traffic .scales {
         justify-content: flex-end;
@@ -527,6 +653,9 @@ body.dashboard li.dashboard svg .st0 {
     .main-content {
         margin-left: 70px;
     }
+    .main-content .row {
+        border-bottom: 1px solid #e5e5e5;
+    }
     .row.column-2 {
         float: left;
         width: 100%;
@@ -534,6 +663,7 @@ body.dashboard li.dashboard svg .st0 {
     .column {
         width: 50%;
         float: left;
+        border-bottom: none;
     }
     .column.border-right {
         border-right: 1px solid #e5e5e5;

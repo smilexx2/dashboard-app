@@ -6,9 +6,10 @@
     <title>Online Registration Form</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/css-toggle-switch/latest/toggle-switch.css" />
+    <link rel="stylesheet" href="css/styles.css">
 
 </head>
 
@@ -246,8 +247,60 @@
                         <ul class="list"></ul>
                     </div>
                 </div>
-                <div class="message-user">Message User Area</div>
-                <div class="settings">Settings Area</div>
+                <div class="row column-2">
+                    <div class="message-user column border-right">
+                        <h3>Message User</h3>
+                        <div class="message-box">
+                            <input type="text" placeholder="Search for User">
+                            <textarea placeholder="Message for User" rows="4"></textarea>
+                            <button class="blue">Send</button>
+                        </div>
+                    </div>
+                    <div class="settings column">
+                        <h3>Settings</h3>
+                        <div>
+                            <label class="switch-light switch-ios" onclick="">
+                                <input type="checkbox">
+                                <strong>
+                                    Send Email Notifications
+                                </strong>
+                                <span>
+                                    <span>Off</span>
+                                    <span>On</span>
+                                    <a></a>
+                                </span>
+                            </label>
+                            <label class="switch-light switch-ios" onclick="">
+                                <input type="checkbox">
+                                <strong>
+                                    Set Profile to Public
+                                </strong>
+                                <span>
+                                    <span>Off</span>
+                                    <span>On</span>
+                                    <a></a>
+                                </span>
+                            </label>
+                            <div class="select-wrapper">
+                                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" width="16" style="fill:#8d91c8;">
+                                    <g>
+                                        <g>
+                                            <polygon points="17.4,63.5 14.6,60.5 45.1,32 14.6,3.5 17.4,0.5 50.9,32 		"/>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <select>
+                                    <option>Select Timezone</option>
+                                    <option>Melbourne</option>
+                                </select>
+                            </div>
+                            <div class="button-group">
+                                <button class="blue short left">Save</button>
+                                <button class="short right">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

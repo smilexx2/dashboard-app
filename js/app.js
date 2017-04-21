@@ -8,11 +8,11 @@ const chevronIcon = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/20
 const $window = $(window);
 
 $.ajax({
-    url: 'https://randomuser.me/api/?results=5',
+    url: 'https://randomuser.me/api/?results=500',
     dataType: 'json',
     success: function(data) {
         const loginUser = data.results[0];
-        const newMembers = data.results.slice(1, data.results.length);
+        const newMembers = data.results.slice(1, 5);
 
         avatarImg.src = getAvatarImageUrl(loginUser)
         nameLink.innerHTML = getName(loginUser);
@@ -39,8 +39,6 @@ let createMockActivityData = function(members) {
         message: getName(members[3]) + " posted YourApp's SEO Tip",
         time: '1 day ago'
     };
-
-
 }
 
 let getAvatarImageUrl = (user) => user.picture.thumbnail;
@@ -125,6 +123,35 @@ $('.search input').focusout(function() {
 
 $('.close-button').click(function() {
     $('.main-content .container .alert-box').slideUp();
+});
+
+$('.notification-icon').click(function() {
+    $('body').removeClass('disable-scroll');
+    $('.dropdown').toggleClass('hide');
+
+    if (!$('.notification-icon').hasClass('hide')) {
+        $('.notification-icon').addClass('hide');
+    } else {
+        $('.dropdown ul').addClass('hide');
+        $('.no-notification-message').addClass('show');
+    }
+
+    if ($window.width() < 768) {
+        $('aside').removeClass('open');
+        if (!$('.dropdown').hasClass('hide')) {
+            $('body').addClass('disable-scroll');
+        }
+    }
+
+});
+
+$(document).mouseup(function(e) {
+    var container = $('.dropdown, .notification-icon');
+
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+        $('.dropdown').addClass('hide');
+        $('body').removeClass('disable-scroll');
+    }
 });
 
 const endDate = moment().year(2017).month(6).date(31);

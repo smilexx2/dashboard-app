@@ -177,12 +177,23 @@
                         <ul class="scales">
                             <li>Hourly</li>
                             <li>Daily</li>
-                            <li style="background: #83c891; color: #fff; border-radius: 15px; padding: 5px 10px;">Weekly</li>
+                            <li class="active">Weekly</li>
                             <li>Monthly</li>
                         </ul>
                     </div>
-                    <div class="chart-containter">
-                        <canvas id="scatterChartWeekly" height="200"></canvas>
+                    <div class="chart-container">
+                        <div class="chart-wrapper">
+                            <canvas id="scatterChartHourly" height="200"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="scatterChartDaily" height="200"></canvas>
+                        </div>
+                        <div class="chart-wrapper active">
+                            <canvas id="scatterChartWeekly" height="200"></canvas>
+                        </div>
+                        <div class="chart-wrapper">
+                            <canvas id="scatterChartMonthly" height="200"></canvas>
+                        </div>
                     </div>
                 </div>
                 <div class="row column-2">
@@ -270,7 +281,9 @@
                     <div class="message-user column border-right">
                         <h3>Message User</h3>
                         <div class="message-box">
-                            <input type="text" placeholder="Search for User">
+                            <div class="search-user-box">
+                                <input type="text" placeholder="Search for User">
+                            </div>
                             <textarea placeholder="Message for User" rows="4"></textarea>
                             <button class="blue">Send</button>
                         </div>

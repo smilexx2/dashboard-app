@@ -2,11 +2,13 @@ const avatarImg = document.querySelector('header .avatar');
 const nameLink = document.querySelector('header .name');
 const membersList = document.querySelector('.new-members .list');
 const recentActivitiesList = document.querySelector('.recent-activities .list');
-const timeScaleListItems = document.querySelectorAll('.scales li');
+const searchUserList = document.querySelector('.search-user-box .list');
 
 const chevronIcon = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" width="16"><g><g><polygon points="17.4,63.5 14.6,60.5 45.1,32 14.6,3.5 17.4,0.5 50.9,32"/></g></g></svg>';
 
 const $window = $(window);
+
+let allMembers = [];
 
 $.ajax({
     url: 'https://randomuser.me/api/?results=500&nat=us,ca,gb,au',
@@ -14,6 +16,7 @@ $.ajax({
     success: function(data) {
         const loginUser = data.results[0];
         const newMembers = data.results.slice(1, 5);
+        allMembers = data.results.slice();
 
         avatarImg.src = getAvatarImageUrl(loginUser)
         nameLink.innerHTML = getName(loginUser);
@@ -81,6 +84,7 @@ let createListItem = function(member, texts) {
     let avatar = createAvatar(member);
 
     anchor.href = '#';
+
     textDiv.className = 'text';
 
     mainSpan.className = 'mainText';
@@ -98,6 +102,7 @@ let createListItem = function(member, texts) {
     anchor.appendChild(textDiv);
     anchor.appendChild(sideSpan);
     listItem.appendChild(anchor);
+
     return listItem;
 }
 
@@ -144,7 +149,6 @@ $('.notification-icon').click(function() {
     if ($window.width() < 768) {
         $('aside').removeClass('open');
     }
-
 });
 
 $(document).mouseup(function(e) {
@@ -162,6 +166,53 @@ $('.scales li').click(function() {
     $('.chart-wrapper').eq($('.scales li').index($(this))).addClass('active');
     $(this).addClass('active');
 });
+
+$('.search-user-box input').keyup(function() {
+    let foundUsers;
+
+    hideUserList();
+
+    if (allMembers.length !== 0 && $(this).val() !== '') {
+        foundUsers = searchUsers($(this).val(), allMembers);
+
+        for (let i = 0; i < foundUsers.length; i++) {
+            searchUserList.appendChild(createListItem(foundUsers[i], {
+                mainText: getName(foundUsers[i]),
+                subText: getEmail(foundUsers[i]),
+                sideText: ''
+            }));
+        }
+        if (foundUsers.length > 0) {
+            $('.autocomplete').addClass('show');
+            $('.search-user-box a').click(function(e) {
+                e.preventDefault();
+                const email = $(this).find('.text .subText').text();
+                $('.search-user-box input').val(email);
+                hideUserList();
+            });
+        }
+    }
+});
+
+let hideUserList = function() {
+    while (searchUserList.hasChildNodes()) {
+        searchUserList.removeChild(searchUserList.lastChild);
+        $('.autocomplete').removeClass('show');
+    }
+}
+
+let searchUsers = function(name, members) {
+    let foundUsers = [];
+    for (let i = 0; i < members.length; i++) {
+        if (getName(members[i]).includes(name.toLowerCase())) {
+            foundUsers.push(members[i]);
+        }
+        if (foundUsers.length >= 5) {
+            break;
+        }
+    }
+    return foundUsers;
+}
 
 let dataHourly = [{
     x: moment().year(2017).month(6).date(30).hour(0),

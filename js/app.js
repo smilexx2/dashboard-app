@@ -214,6 +214,25 @@ let searchUsers = function(name, members) {
     return foundUsers;
 }
 
+for (let i = 0; i < $('.settings .switch-light input').length; i++) {
+    let inputElement = $('.settings .switch-light input').get(i);
+    if (localStorage.getItem('switch' + i) == 'checked') {
+        $(inputElement).prop('checked', true);
+    } else if (localStorage.getItem('switch' + i) == 'unchecked') {
+        $(inputElement).prop('checked', false);
+    }
+}
+
+$('.settings .switch-light').click(function() {
+    if ($(this).find('input').is(':checked')) {
+        localStorage.setItem('switch' + $(this).index(), 'checked');
+    } else {
+        localStorage.setItem('switch' + $(this).index(), 'unchecked');
+    }
+
+});
+
+
 let dataHourly = [{
     x: moment().year(2017).month(6).date(30).hour(0),
     y: 12

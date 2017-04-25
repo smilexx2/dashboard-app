@@ -818,6 +818,7 @@ p.notification-message {
         left: calc(100% + 2px);
         bottom: 15px;
         width: 100%;
+        max-width: 300px;
     }
 }
 

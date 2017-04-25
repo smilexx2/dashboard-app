@@ -1,4 +1,11 @@
-const avatarImg = document.querySelector('header .avatar');
+/*jshint esversion: 6 */
+/*globals $:false */
+/*globals moment:false */
+/*globals Chart:false*/
+
+
+const avatarImg = document.createElement('img');
+const avatarImgContainer = document.querySelector('.avatar-container');
 const nameLink = document.querySelector('header .name');
 const membersList = document.querySelector('.new-members .list');
 const recentActivitiesList = document.querySelector('.recent-activities .list');
@@ -10,6 +17,9 @@ const $window = $(window);
 
 let allMembers = [];
 
+avatarImg.className = "avatar";
+avatarImgContainer.appendChild(avatarImg);
+
 $.ajax({
     url: 'https://randomuser.me/api/?results=500&nat=us,ca,gb,au',
     dataType: 'json',
@@ -18,7 +28,7 @@ $.ajax({
         const newMembers = data.results.slice(1, 5);
         allMembers = data.results.slice();
 
-        avatarImg.src = getAvatarImageUrl(loginUser)
+        avatarImg.src = getAvatarImageUrl(loginUser);
         nameLink.innerHTML = getName(loginUser);
         createMockActivityData(newMembers);
         console.log(newMembers);
@@ -43,7 +53,7 @@ let createMockActivityData = function(members) {
         message: getName(members[3]) + " posted YourApp's SEO Tip",
         time: '1 day ago'
     };
-}
+};
 
 let getAvatarImageUrl = (user) => user.picture.thumbnail;
 let getName = (user) => user.name.first + ' ' + user.name.last;
@@ -64,7 +74,7 @@ let createLists = function(members) {
             sideText: chevronIcon
         }));
     }
-}
+};
 
 let createAvatar = function(member) {
     let avatar = document.createElement('img');
@@ -72,7 +82,7 @@ let createAvatar = function(member) {
     avatar.className = 'avatar';
 
     return avatar;
-}
+};
 
 let createListItem = function(member, texts) {
     let mainSpan = document.createElement('span');
@@ -104,7 +114,7 @@ let createListItem = function(member, texts) {
     listItem.appendChild(anchor);
 
     return listItem;
-}
+};
 
 
 
@@ -199,7 +209,7 @@ let hideUserList = function() {
         searchUserList.removeChild(searchUserList.lastChild);
         $('.autocomplete').removeClass('show');
     }
-}
+};
 
 let searchUsers = function(name, members) {
     let foundUsers = [];
@@ -212,7 +222,7 @@ let searchUsers = function(name, members) {
         }
     }
     return foundUsers;
-}
+};
 
 for (let i = 0; i < $('.settings .switch-light input').length; i++) {
     let inputElement = $('.settings .switch-light input').get(i);
@@ -263,7 +273,7 @@ let optionsHourly = {
         },
         tooltipFormat: 'H:00'
     }
-}
+};
 
 let dataDaily = [{
     x: moment().year(2017).month(6).date(24),
@@ -304,7 +314,7 @@ let optionsDaily = {
         },
         tooltipFormat: 'dddd'
     }
-}
+};
 
 let dataWeekly = [{
         x: moment().year(2017).month(4).date(16),
@@ -383,7 +393,7 @@ let optionsWeekly = {
         tooltipFormat: 'D-MMM-YYYY'
 
     }
-}
+};
 
 let dataMonthly = [{
         x: moment().year(2017).month(0).date(0),
@@ -432,8 +442,8 @@ let datasetsScatterChart = (data) => {
             backgroundColor: 'rgba(128, 134, 195, 0.3)',
             data: data
         }]
-    }
-}
+    };
+};
 
 let optionsScatterChart = (options) => {
     return {
@@ -474,8 +484,8 @@ let optionsScatterChart = (options) => {
         },
         responsive: true,
         maintainAspectRatio: false
-    }
-}
+    };
+};
 
 let scatterChartHourly = new Chart("scatterChartHourly", {
     type: 'line',
@@ -487,7 +497,7 @@ let scatterChartDaily = new Chart("scatterChartDaily", {
     type: 'line',
     data: datasetsScatterChart(dataDaily),
     options: optionsScatterChart(optionsDaily)
-})
+});
 
 let scatterChartWeekly = new Chart("scatterChartWeekly", {
     type: 'line',
@@ -589,8 +599,6 @@ var pieChartMobileUser = new Chart("pieChartMobileUser", {
             arc: {
                 borderWidth: 0
             }
-
         }
     }
-
 });

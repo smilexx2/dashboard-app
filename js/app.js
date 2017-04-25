@@ -11,7 +11,7 @@ const membersList = document.querySelector('.new-members .list');
 const recentActivitiesList = document.querySelector('.recent-activities .list');
 const searchUserList = document.querySelector('.search-user-box .list');
 
-const chevronIcon = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" width="16"><g><g><polygon points="17.4,63.5 14.6,60.5 45.1,32 14.6,3.5 17.4,0.5 50.9,32"/></g></g></svg>';
+const chevronIcon = '<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve" width="16"><style>.list .sideText svg {fill: #8d91c8;}</style><g><g><polygon points="17.4,63.5 14.6,60.5 45.1,32 14.6,3.5 17.4,0.5 50.9,32"/></g></g></svg>';
 
 const $window = $(window);
 
@@ -31,7 +31,6 @@ $.ajax({
         avatarImg.src = getAvatarImageUrl(loginUser);
         nameLink.innerHTML = getName(loginUser);
         createMockActivityData(newMembers);
-        console.log(newMembers);
         createLists(newMembers);
     }
 });

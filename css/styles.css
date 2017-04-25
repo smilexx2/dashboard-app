@@ -167,6 +167,11 @@ nav .wrapper span {
 
 aside.open .wrapper span {
     opacity: 1;
+    color: #a1a1b4;
+}
+
+aside.open li.dashboard .wrapper span {
+    color: #fff;
 }
 
 aside .wrapper span {
@@ -208,10 +213,6 @@ nav svg {
     margin: 10px 0;
 }
 
-nav svg .st0 {
-    fill: #a1a1b4;
-}
-
 input,
 textarea {
     color: #797979;
@@ -224,10 +225,6 @@ textarea {
 
 body.dashboard li.dashboard a::before {
     display: block;
-}
-
-body.dashboard li.dashboard svg .st0 {
-    fill: #FFFFFF;
 }
 
 .main-content .top {
@@ -449,10 +446,6 @@ textarea:-moz-placeholder {
     border-radius: 50%;
 }
 
-.icon svg {
-    fill: #fff;
-}
-
 .icon.twitter svg {
     width: 32px;
     height: 32px;
@@ -539,10 +532,6 @@ textarea:-moz-placeholder {
     font-size: 12px;
     color: #797979;
     margin-left: 10px;
-}
-
-.list .sideText svg {
-    fill: #8d91c8;
 }
 
 .message-box input,
@@ -640,7 +629,6 @@ button.right {
     height: 37px;
     line-height: 37px;
     transform: rotate(89deg);
-    pointer-events: none;
 }
 
 .dropdown {

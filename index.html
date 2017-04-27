@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Online Registration Form</title>
+    <title>Wep App Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/normalize.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
@@ -291,16 +291,38 @@
                 <div class="row column-2">
                     <div class="message-user column border-right">
                         <h3>Message User</h3>
-                        <div class="message-box">
+                        <form class="message-box">
                             <div class="search-user-box">
-                                <input type="text" placeholder="Search for User">
+                                <div class="container">
+                                    <input type="text" placeholder="Search for User" name="email">
+                                    <span class="error-message">Can't be empty</span>
+                                </div>
                                 <div class="autocomplete">
                                     <ul class="list">
                                     </ul>
                                 </div>
                             </div>
-                            <textarea placeholder="Message for User" rows="4"></textarea>
+                            <div class="container">
+                                <textarea placeholder="Message for User" rows="4" name="message"></textarea>
+                                <span class="error-message">Can't be empty</span>
+                            </div>
                             <button class="blue">Send</button>
+                        </form>
+                        <div class="popup-container success">
+                            <div class="popup">
+                                <span>Message sent successfully.</span>
+                                <button class="close-button" disabled>
+                                    <i class="fa fa-check" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="popup-container failed">
+                            <div class="popup">
+                                <span>User cannot be found.</span>
+                                <button class="close-button" disabled>
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="settings column">

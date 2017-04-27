@@ -299,6 +299,16 @@ button:focus {
     font-size: 18px;
 }
 
+input.warning,
+textarea.warning {
+    border-color: red;
+}
+
+input::after {
+    position: absolute;
+    content: "can't be empty"
+}
+
 input::-moz-placeholder,
 textarea::-moz-placeholder {
     color: #b2b2b2;
@@ -347,7 +357,7 @@ textarea:-moz-placeholder {
     align-items: center;
 }
 
-.main-content .alert-box .close-button {
+.close-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -357,8 +367,9 @@ textarea:-moz-placeholder {
     border: none;
 }
 
-.close-button .fa-times {
+.close-button .fa {
     font-size: 16px;
+    width: 16px;
 }
 
 .main-content .alert-box strong {
@@ -534,12 +545,37 @@ textarea:-moz-placeholder {
     margin-left: 10px;
 }
 
+.message-box .container {
+    position: relative;
+    margin-bottom: 15px;
+}
+
 .message-box input,
 .message-box textarea {
     padding: 10px 20px;
     background: #fbfbfb;
-    margin-bottom: 15px;
     vertical-align: top;
+}
+
+.container .error-message {
+    display: none;
+}
+
+.container.error input,
+.container.error textarea {
+    border-color: red;
+}
+
+.container.error .error-message {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    color: red;
+    font-size: 12px;
+    font-weight: 300;
 }
 
 button {
@@ -739,6 +775,38 @@ p.notification-message {
     display: block;
 }
 
+.popup-container {
+    display: none;
+}
+
+.popup-container.success .popup {
+    background: #83c891;
+}
+
+.popup-container.failed .popup {
+    background: red;
+}
+
+.popup {
+    font-size: 12px;
+    text-align: left;
+    padding: 10px 0 10px 15px;
+    color: #fff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-self: stretch;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 10000;
+    left: 50%;
+    margin: 20px 0 0 -105px;
+    width: 210px;
+    box-shadow: 0px 0px 10px #888888;
+    font-weight: 400;
+}
+
 @media screen and (min-width: 320px) {
     .dropdown {
         width: 250px;
@@ -816,7 +884,7 @@ p.notification-message {
     .autocomplete {
         right: auto;
         left: calc(100% + 2px);
-        bottom: 15px;
+        bottom: 0;
         width: 100%;
         max-width: 300px;
     }

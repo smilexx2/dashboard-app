@@ -136,7 +136,7 @@ $('.search input').focusout(function() {
     }
 });
 
-$('.close-button').click(function() {
+$('.alert-box .close-button').click(function() {
     $('.main-content .container .alert-box').slideUp();
 });
 
@@ -176,7 +176,7 @@ $('.scales li').click(function() {
     $(this).addClass('active');
 });
 
-$('.search-user-box input').keyup(function() {
+$('.search-user-box input').on('keyup focus', function(e) {
     let foundUsers;
 
     hideUserList();
@@ -199,21 +199,40 @@ $('.search-user-box input').keyup(function() {
                 $('.search-user-box input').val(email);
                 hideUserList();
             });
+
+            if (foundUsers.length == 1 && getEmail(foundUsers[0]) == $(this).val()) {
+                hideUserList();
+            }
         }
+    }
+
+
+});
+
+$(".autocomplete").hover(function() {
+    $(this).addClass("hovered");
+}, function() {
+    $(this).removeClass("hovered");
+});
+
+$('.search-user-box input').focusout(function() {
+    if (!$(".autocomplete").hasClass("hovered")) {
+        $('.autocomplete').removeClass('show');
     }
 });
 
 let hideUserList = function() {
     while (searchUserList.hasChildNodes()) {
         searchUserList.removeChild(searchUserList.lastChild);
-        $('.autocomplete').removeClass('show');
+        $('.autocomplete').removeClass('show hovered');
     }
 };
 
-let searchUsers = function(name, members) {
+let searchUsers = function(text, members) {
     let foundUsers = [];
     for (let i = 0; i < members.length; i++) {
-        if (getName(members[i]).includes(name.toLowerCase())) {
+        if (getName(members[i]).includes(text.toLowerCase()) ||
+            getEmail(members[i]).includes(text.toLowerCase())) {
             foundUsers.push(members[i]);
         }
         if (foundUsers.length >= 5) {
@@ -241,19 +260,147 @@ $('.settings .switch-light').click(function() {
 
 });
 
+$('form.message-box').submit(function(e) {
+    e.preventDefault();
+    if (!hasEmptyFields() && !invalidEmail()) {
+        showPopUp($(".popup-container.success"));
+    }
+});
+
+let invalidEmail = function() {
+    for (let i = 0; i < allMembers.length; i++) {
+        if ($('form.message-box input[name="email"]').val() == getEmail(allMembers[i])) {
+            return false;
+        }
+    }
+    showPopUp($(".popup-container.failed"));
+    return true;
+}
+
+let showPopUp = function($popUpContainer) {
+    $('form.message-box button').prop('disabled', true);
+
+    $popUpContainer.fadeIn(200, function() {
+        let timeout = setTimeout(function() {
+            $popUpContainer.fadeOut(200, function() {
+                $('form.message-box button').prop('disabled', false);
+            });
+        }, 3000);
+        // $('.popup .close-button').click(function() {
+        //     $popUpContainer.fadeOut(200, function() {
+        //         $('form.message-box button').prop('disabled', false);
+        //         clearTimeout(timeout);
+        //     });
+        // });
+    });
+}
+
+let hasEmptyFields = function() {
+    let isEmpty = false;
+    $('.message-box .container').each(function() {
+        $(this).find('input, textarea').each(function() {
+            if ($(this).val() == '') {
+                $(this).parent().addClass('error');
+                isEmpty = true;
+            }
+        });
+    });
+    return isEmpty;
+}
+
+$('.message-box .container').each(function() {
+    $(this).find('.error-message').click(function() {
+        $(this).parent().removeClass('error');
+        $(this).parent().find('input, textarea').focus();
+    });
+
+    $(this).find('input, textarea').focus(function() {
+        $(this).parent().removeClass('error');
+    });
+});
+
+
 
 let dataHourly = [{
     x: moment().year(2017).month(6).date(30).hour(0),
-    y: 12
+    y: 3
 }, {
     x: moment().year(2017).month(6).date(30).hour(1),
+    y: 4
+}, {
+    x: moment().year(2017).month(6).date(30).hour(2),
+    y: 0
+}, {
+    x: moment().year(2017).month(6).date(30).hour(3),
+    y: 13
+}, {
+    x: moment().year(2017).month(6).date(30).hour(4),
+    y: 5
+}, {
+    x: moment().year(2017).month(6).date(30).hour(5),
+    y: 7
+}, {
+    x: moment().year(2017).month(6).date(30).hour(6),
     y: 18
+}, {
+    x: moment().year(2017).month(6).date(30).hour(7),
+    y: 17
+}, {
+    x: moment().year(2017).month(6).date(30).hour(8),
+    y: 12
+}, {
+    x: moment().year(2017).month(6).date(30).hour(9),
+    y: 15
+}, {
+    x: moment().year(2017).month(6).date(30).hour(10),
+    y: 11
+}, {
+    x: moment().year(2017).month(6).date(30).hour(11),
+    y: 20
+}, {
+    x: moment().year(2017).month(6).date(30).hour(12),
+    y: 6
+}, {
+    x: moment().year(2017).month(6).date(30).hour(13),
+    y: 10
+}, {
+    x: moment().year(2017).month(6).date(30).hour(14),
+    y: 2
+}, {
+    x: moment().year(2017).month(6).date(30).hour(15),
+    y: 19
+}, {
+    x: moment().year(2017).month(6).date(30).hour(16),
+    y: 8
+}, {
+    x: moment().year(2017).month(6).date(30).hour(17),
+    y: 14
+}, {
+    x: moment().year(2017).month(6).date(30).hour(18),
+    y: 9
+}, {
+    x: moment().year(2017).month(6).date(30).hour(19),
+    y: 1
+}, {
+    x: moment().year(2017).month(6).date(30).hour(20),
+    y: 16
+}, {
+    x: moment().year(2017).month(6).date(30).hour(21),
+    y: 7
+}, {
+    x: moment().year(2017).month(6).date(30).hour(22),
+    y: 9
+}, {
+    x: moment().year(2017).month(6).date(30).hour(23),
+    y: 11
+}, {
+    x: moment().year(2017).month(6).date(31).hour(0),
+    y: 12
 }];
 
 let optionsHourly = {
     max: 25,
     fixedStepSize: 5,
-    autoSkip: true,
     time: {
         unit: 'hour',
         round: 'hour',
@@ -275,31 +422,39 @@ let optionsHourly = {
 };
 
 let dataDaily = [{
+    x: moment().year(2017).month(6).date(23),
+    y: 50
+}, {
     x: moment().year(2017).month(6).date(24),
-    y: 0
+    y: 75
 }, {
     x: moment().year(2017).month(6).date(25),
-    y: 175
+    y: 150
 }, {
     x: moment().year(2017).month(6).date(26),
+    y: 100
+}, {
+    x: moment().year(2017).month(6).date(27),
+    y: 200
+}, {
+    x: moment().year(2017).month(6).date(28),
+    y: 175
+}, {
+    x: moment().year(2017).month(6).date(29),
     y: 75
 }, {
     x: moment().year(2017).month(6).date(30),
-    y: 175
-}, {
-    x: moment().year(2017).month(6).date(31),
-    y: 75
+    y: 159
 }];
 
 let optionsDaily = {
     max: 250,
     fixedStepSize: 50,
-    autoSkip: false,
     time: {
         unit: 'day',
         round: 'day',
-        min: moment().year(2017).month(6).date(31).subtract(7, 'd').hour(0).minute(0),
-        max: moment().year(2017).month(6).date(31).hour(0).minute(0),
+        min: moment().year(2017).month(6).date(30).subtract(7, 'd').hour(0).minute(0),
+        max: moment().year(2017).month(6).date(30).hour(0).minute(0),
         displayFormats: {
             'millisecond': 'ddd',
             'second': 'ddd',
@@ -311,7 +466,7 @@ let optionsDaily = {
             'quarter': 'ddd',
             'year': 'ddd'
         },
-        tooltipFormat: 'dddd'
+        tooltipFormat: 'dddd, DD-MM-YYYY'
     }
 };
 
@@ -372,7 +527,6 @@ let dataWeekly = [{
 let optionsWeekly = {
     max: 2500,
     fixedStepSize: 500,
-    autoSkip: false,
     time: {
         round: 'day',
         min: moment().year(2017).month(6).date(31).subtract(11, 'weeks').add(1, 'd'),
@@ -395,34 +549,73 @@ let optionsWeekly = {
 };
 
 let dataMonthly = [{
-        x: moment().year(2017).month(0).date(0),
-        y: 5000
+        x: moment().year(2017).month(0).date(1),
+        y: 4490
     },
     {
-        x: moment().year(2017).month(1),
-        y: 7500
+        x: moment().year(2017).month(1).date(1),
+        y: 6139
+    },
+    {
+        x: moment().year(2017).month(2).date(1),
+        y: 5741
+    },
+    {
+        x: moment().year(2017).month(3).date(1),
+        y: 4964
+    },
+    {
+        x: moment().year(2017).month(4).date(1),
+        y: 4406
+    },
+    {
+        x: moment().year(2017).month(5).date(1),
+        y: 7333
+    },
+    {
+        x: moment().year(2017).month(6).date(1),
+        y: 5333
+    },
+    {
+        x: moment().year(2017).month(7).date(1),
+        y: 4089
+    },
+    {
+        x: moment().year(2017).month(8).date(1),
+        y: 7559
+    },
+    {
+        x: moment().year(2017).month(9).date(1),
+        y: 4306
+    },
+    {
+        x: moment().year(2017).month(10).date(1),
+        y: 5011
+    },
+    {
+        x: moment().year(2017).month(11).date(1),
+        y: 4559
     }
 ];
 
 let optionsMonthly = {
-    max: 25000,
-    fixedStepSize: 5000,
-    autoSkip: false,
+    max: 10000,
+    fixedStepSize: 2000,
     time: {
         unit: 'month',
         round: 'month',
-        min: moment().year(2017).month(0).date(0),
-        max: moment().year(2018).month(0).date(1),
+        min: moment().year(2017).month(0).date(1),
+        max: moment().year(2017).month(11).date(1),
         displayFormats: {
-            'millisecond': 'M',
-            'second': 'M',
-            'minute': 'M',
-            'hour': 'M',
-            'day': 'M',
-            'week': 'M',
-            'month': 'M',
-            'quarter': 'M',
-            'year': 'M'
+            'millisecond': 'MMM',
+            'second': 'MMM',
+            'minute': 'MMM',
+            'hour': 'MMM',
+            'day': 'MMM',
+            'week': 'MMM',
+            'month': 'MMM',
+            'quarter': 'MMM',
+            'year': 'MMM'
         },
         tooltipFormat: 'MMMM YYYY'
 
@@ -471,7 +664,7 @@ let optionsScatterChart = (options) => {
                     fontFamily: "'Roboto', sans-serif",
                     fontSize: 10,
                     fontColor: "#cacaca",
-                    autoSkip: options.autoSkip,
+                    autoSkip: true,
                     autoSkipPadding: 20
                 },
                 gridLines: {

@@ -275,13 +275,13 @@ let invalidEmail = function() {
     }
     showPopUp($(".popup-container.failed"));
     return true;
-}
+};
 
 let showPopUp = function($popUpContainer) {
     $('form.message-box button').prop('disabled', true);
 
     $popUpContainer.fadeIn(200, function() {
-        let timeout = setTimeout(function() {
+        setTimeout(function() {
             $popUpContainer.fadeOut(200, function() {
                 $('form.message-box button').prop('disabled', false);
             });
@@ -293,20 +293,20 @@ let showPopUp = function($popUpContainer) {
         //     });
         // });
     });
-}
+};
 
 let hasEmptyFields = function() {
     let isEmpty = false;
     $('.message-box .container').each(function() {
         $(this).find('input, textarea').each(function() {
-            if ($(this).val() == '') {
+            if ($(this).val() === '') {
                 $(this).parent().addClass('error');
                 isEmpty = true;
             }
         });
     });
     return isEmpty;
-}
+};
 
 $('.message-box .container').each(function() {
     $(this).find('.error-message').click(function() {
